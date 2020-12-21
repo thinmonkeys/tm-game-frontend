@@ -3,7 +3,6 @@ const Edit = ({onEdit}) => (
 		<div>
 		Editing
 		</div>
-
 		<button onClick={onEdit}>confirm</button>
 	</div>
 )

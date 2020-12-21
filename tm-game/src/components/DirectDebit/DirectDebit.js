@@ -62,10 +62,10 @@ export default class DirectDebit extends Component {
 
 		return (
 		<div>
-			<title>Direct Debits</title>
+			<title>Direct Debit</title>
 			<NavBar/>
 
-			<h1>Direct Debits</h1>
+			<h1>{isEditing ? "Editing Direct Debit" : "Direct Debits"}</h1>
 
 			{hasError ? <Alert children="Error loading" variant='error'/> : 
 			

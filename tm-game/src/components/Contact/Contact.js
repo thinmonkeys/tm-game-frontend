@@ -52,7 +52,7 @@ export default class Contact extends Component {
 			<title>Contact Details</title>
 			<NavBar/>
 
-			<h1>Contact Details</h1>
+			<h1>{isEditing ? "Editing Contact Detail" : "Contact Details"}</h1>
 
 			{hasError ? <Alert children="Error loading" variant='error'/> :
 

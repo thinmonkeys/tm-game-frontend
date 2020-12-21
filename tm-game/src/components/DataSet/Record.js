@@ -1,5 +1,6 @@
 import './DataSet.css'
 import {formatAmount} from  '../../utils/utils'
+import moment from 'moment'
 
 const Record = ({record, onEdit}) => (
 	<li className="record">
@@ -9,8 +10,8 @@ const Record = ({record, onEdit}) => (
 			
 		<div className="middle">
 			<div className="creditor-name">{record.CreditorName}</div>
-			<div className="date">{record.NextDueDate}</div>
-			<div className="description">{record.FrequencyDescription}</div>
+			<div className="date">{moment(record.NextDueDate).format("dddd · MMMM Do")}</div>
+			<div className="description">{record.FrequencyDescription.split(" ")[0]}</div>
 		</div>
 			
 		<div className="right">
