@@ -12,6 +12,19 @@ export default class Incomes extends Component {
 		hasLoadError: false
 	}
 
+	componentDidMount(){
+		try {
+			fetch("../../service/FakeServices")
+		.then((response) => response.json())
+		.then(Incomes => {
+			this.setState({ IncomeList: Incomes, isLoading: false });
+		});
+		}
+		catch{
+			this.setState({ isLoading: false, hasLoadError: true });
+		}
+	}
+
 	render(){
 		const {IncomeList, isLoading, hasLoadError} = this.state
 
@@ -23,7 +36,7 @@ export default class Incomes extends Component {
 		<div>
 			<title>Incomes</title>
 			<NavBar/>
-			<p>Incomes</p>
+			<h1>Incomes</h1>
 			<DataSet recordList={IncomeList}/>
 		</div>
 		) 

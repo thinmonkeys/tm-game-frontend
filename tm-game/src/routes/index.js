@@ -15,7 +15,6 @@ export default function Routes() {
 		<Route path="/Incomes" component={Incomes} />
 		<Route path="/StandingOrders" component={StandingOrders} />
 		<Route path="/Contact" component={Contact} />
-
 				{/* redirect user to Dashboard if route does not exist and user is not authenticated */}
 		<Route component={Dashboard} />
 	  </Switch>

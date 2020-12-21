@@ -11,6 +11,20 @@ export default class Contact extends Component {
 		HasLoadError: true
 	}
 
+	componentDidMount(){
+		try {
+			fetch("../../service/FakeServices")
+		.then((response) => response.json())
+		.then(contactDetails => {
+			this.setState({ contactDetails: contactDetails, isLoading: false });
+		});
+		}
+		catch{
+			this.setState({ isLoading: false, hasLoadError: true });
+		}
+	}
+
+
 	render(){
 		const {isLoading, HasLoadError} = this.state
 
@@ -22,7 +36,7 @@ export default class Contact extends Component {
 		<div>
 			<title>Contact Details</title>
 			<NavBar/>
-			<p>Contact Details</p>
+			<h1>Contact Details</h1>
 			<h2>Mobile Number: </h2>
 			<h2>Home Number: </h2>
 			<h2>Email: </h2>

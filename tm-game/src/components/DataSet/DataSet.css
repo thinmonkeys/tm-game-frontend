@@ -1,0 +1,46 @@
+.record{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border: 0;
+    padding: 16px 0px;
+    line-height: 1.5;
+	letter-spacing: -0.5px;
+	border-bottom: 1px solid #ebebeb;
+	-webkit-box-shadow: 0 0 6px 0 #d8d8d8;
+	box-shadow: 0 0 6px 0 #d8d8d8;
+}
+
+.icon {
+	height: 40px;
+	width: 40px;
+	background-color: blue;
+	}
+
+.right {
+	padding: 0px 16px;
+}
+
+.middle {
+	font-size: 12px;
+	display: flex;
+	flex-direction: column;
+	width: 100%
+}
+
+.left {
+	padding: 0px 16px;
+}
+
+.creditor-name {
+	text-transform: capitalize;
+	font-size: 14px;
+}
+
+.confirm-all {
+	margin-top: 24px;
+	width: 100%;
+}
+
+
+
