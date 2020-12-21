@@ -73,7 +73,7 @@ export default class DirectDebit extends Component {
 
 			isEditing ? <Edit onEdit={() => this.handleEdit()}/> :
 			
-			<DataSet onConfirmAll={() => this.handleConfirmAll()} onEdit={() => this.handleEdit()} recordList={DirectDebitList}/>}
+			DirectDebitList.length > 0 ? <DataSet onConfirmAll={() => this.handleConfirmAll()} onEdit={() => this.handleEdit()} recordList={DirectDebitList}/> : <Alert children="You have no direct debits" />}
 				
 		</div>
 		) 

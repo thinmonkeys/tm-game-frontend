@@ -7,23 +7,23 @@ import Alert from '../Alert/Alert'
 export default class Incomes extends Component {
 
 	state = {
-		StandingOrdersList: ["1", "2", "3"], 
+		StandingOrdersList: [], 
 		isLoading: false,
 		hasLoadError: false
 	}
 
-	componentDidMount(){
-		try {
-			fetch("../../service/FakeServices")
-		.then((response) => response.json())
-		.then(StandingOrders => {
-			this.setState({ StandingOrdersList: StandingOrders, isLoading: false });
-		});
-		}
-		catch{
-			this.setState({ isLoading: false, hasLoadError: true });
-		}
-	}
+	// componentDidMount(){
+	// 	try {
+	// 		fetch("../../service/FakeServices")
+	// 	.then((response) => response.json())
+	// 	.then(StandingOrders => {
+	// 		this.setState({ StandingOrdersList: StandingOrders, isLoading: false });
+	// 	});
+	// 	}
+	// 	catch{
+	// 		this.setState({ isLoading: false, hasLoadError: true });
+	// 	}
+	// }
 
 	render(){
 		const {StandingOrdersList, isLoading, hasLoadError} = this.state
@@ -37,7 +37,7 @@ export default class Incomes extends Component {
 			<title>Standing Orders</title>
 			<NavBar/>
 			<h1>Standing Orders</h1>
-			<DataSet recordList={StandingOrdersList}/>
+		{StandingOrdersList.length > 0 ? <DataSet recordList={StandingOrdersList}/> : <Alert children="You have no standing orders" />}
 		</div>
 		) 
 	}w

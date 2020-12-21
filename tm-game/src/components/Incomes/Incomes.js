@@ -7,7 +7,7 @@ import Alert from '../Alert/Alert'
 export default class Incomes extends Component {
 
 	state = {
-		IncomeList: ["1", "2", "3"], 
+		IncomeList: [], 
 		isLoading: false,
 		hasLoadError: false
 	}
@@ -37,7 +37,7 @@ export default class Incomes extends Component {
 			<title>Incomes</title>
 			<NavBar/>
 			<h1>Incomes</h1>
-			<DataSet recordList={IncomeList}/>
+			{IncomeList.length > 0 ? <DataSet recordList={IncomeList}/> : <Alert children="You have no incomes" />}
 		</div>
 		) 
 	}
