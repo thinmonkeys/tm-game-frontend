@@ -22,7 +22,6 @@
 
 .right {
 	padding: 0px 16px;
-	font-size: 16px;
 }
 
 .middle {
@@ -39,6 +38,10 @@
 
 .creditor-name {
 	text-transform: capitalize;
+	font-size: 16px;
+}
+
+.amount {
 	font-size: 16px;
 }
 

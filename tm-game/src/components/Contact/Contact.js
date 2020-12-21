@@ -20,7 +20,8 @@ export default class Contact extends Component {
 	}
 
 	handleConfirmAll(){
-		alert("contact details confirmed")
+		this.setState({hasUpdated: true})
+
 	}
 
 	handleEdit(){
@@ -55,27 +56,39 @@ export default class Contact extends Component {
 
 			{hasError ? <Alert children="Error loading" variant='error'/> :
 
-			hasUpdated ? <Alert children={`You have successfully updated your direct debits and earned ${pointsGained} points`} variant='success'/> : 
+			hasUpdated ? <Alert children={`You have successfully updated your contact details and earned ${pointsGained} points`} variant='success'/> : 
 
 			isEditing ? <Edit onEdit={() => this.handleEdit()}/> :
 
 			<div>
 			<div className="contact-info">
+				<div>
 				<div className="info-type">Mobile Number</div>
 				<div>{mobileNumber}</div>
+				</div>
+				<div>
 				<a onClick={() => this.handleEdit()}>edit</a>
+				</div>
 			</div>
 			<div className="contact-info">
+				<div>
 				<div className="info-type">Home Number </div>
 				<div>{homeNumber}</div>
+				</div>
+				<div>
 				<a onClick={() => this.handleEdit()}>edit</a>
+				</div>
 			</div>
 			<div className="contact-info">
+				<div>
 				<div className="info-type">Email Number </div>
 				<div>{email}</div>
+				</div>
+				<div>
 				<a onClick={() => this.handleEdit()}>edit</a>
+				</div>
 			</div>
-			<button className="confirm-all" onClick={this.handleConfirmAll}>confirm all</button>
+			<button className="confirm-all" onClick={() => this.handleConfirmAll()}>confirm all</button>
 			</div>}
 		</div>
 		)

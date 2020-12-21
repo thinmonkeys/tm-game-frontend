@@ -1,6 +1,8 @@
 .contact-info{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 	border: 0;
 	padding: 16px 16px;
 	margin-bottom: 4px;
