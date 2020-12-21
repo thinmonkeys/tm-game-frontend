@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Loading from '../Loading/Loading'
 import Alert from '../Alert/Alert'
+import './Scoreboard.css'
 
 export default class Scoreboard extends Component {
 	state = {
@@ -30,7 +31,7 @@ export default class Scoreboard extends Component {
 
 		if (hasError) return <Alert children="Error loading" variant='error'/>
 
-		return <div>Scoreboard</div>
+		return <div className="scoreboard">Scoreboard</div>
 	}
 } 
 

@@ -6,7 +6,7 @@ body {
  flex-direction: column;
  align-items: center;
  justify-content: center;
- color: #000;
+ color: #707070;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -33,6 +33,23 @@ button {
     line-height: 26px;
 }
 
+h1 {
+	color: #000;
+}
+
 a {
 	color: #0097eb;
+	text-decoration: none;
 }
+
+a:hover {
+	color: #00587A;
+	border-bottom: solid 2px #00587A;
+	transition: border-width 0.1s linear;
+}
+
+.confirm-all {
+	margin-top: 24px;
+	width: 100%;
+}
+

@@ -8,7 +8,7 @@ export default class Incomes extends Component {
 
 	state = {
 		IncomeList: ["1", "2", "3"], 
-		isLoading: true,
+		isLoading: false,
 		hasLoadError: false
 	}
 

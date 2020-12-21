@@ -3,6 +3,7 @@ import NavBar from '../NavBar/NavBar'
 import DataSet from '../DataSet/DataSet'
 import Loading from '../Loading/Loading'
 import Alert from '../Alert/Alert'
+import Edit from '../Edit/Edit'
 
 export default class DirectDebit extends Component {
 
@@ -13,7 +14,8 @@ export default class DirectDebit extends Component {
 		hasUpdated: false,
 		pointsGained: 0,
 		isLoading: true,
-		hasError: false
+		hasError: false,
+		isEditing: false
 	}
 
 	handleConfirmAll() {
@@ -36,6 +38,10 @@ export default class DirectDebit extends Component {
 		}
 	}
 
+	handleEdit(){
+		this.setState({isEditing: !this.state.isEditing})
+	}
+
 	componentDidMount(){
 		try {
 		fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22")
@@ -50,7 +56,7 @@ export default class DirectDebit extends Component {
 	}
 
 	render(){
-		const {DirectDebitList, isLoading, hasError, hasUpdated, pointsGained} = this.state
+		const {DirectDebitList, isLoading, hasError, hasUpdated, pointsGained, isEditing} = this.state
 
 		if (isLoading) return <Loading/>
 
@@ -64,8 +70,10 @@ export default class DirectDebit extends Component {
 			{hasError ? <Alert children="Error loading" variant='error'/> : 
 			
 			hasUpdated ? <Alert children={`You have successfully updated your direct debits and earned ${pointsGained} points`} variant='success'/> : 
+
+			isEditing ? <Edit onEdit={() => this.handleEdit()}/> :
 			
-			<DataSet onConfirmAll={() => this.handleConfirmAll()} onUpdate={() => this.update()} recordList={DirectDebitList}/>}
+			<DataSet onConfirmAll={() => this.handleConfirmAll()} onEdit={() => this.handleEdit()} recordList={DirectDebitList}/>}
 				
 		</div>
 		) 

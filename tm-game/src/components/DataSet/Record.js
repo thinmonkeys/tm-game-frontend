@@ -1,7 +1,7 @@
 import './DataSet.css'
 import {formatAmount} from  '../../utils/utils'
 
-const Record = ({record, onClick}) => (
+const Record = ({record, onEdit}) => (
 	<li className="record">
 		<div className="left">
 			<div className="icon"></div>
@@ -15,7 +15,7 @@ const Record = ({record, onClick}) => (
 			
 		<div className="right">
 			<div className="amount">{formatAmount(record.AmountPence)}</div>
-			<a href="#">update</a>
+			<a onClick={onEdit}>edit</a>
 		</div>
 	</li>
 )
