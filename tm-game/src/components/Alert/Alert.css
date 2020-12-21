@@ -1,0 +1,34 @@
+
+:root {
+ 
+	--color-success: green;
+	--color-info: purple;
+	--color-error: red;
+  
+	--color-alert-background: #ebebeb;
+  }
+
+.alert {
+	padding: 1rem 0.75rem;
+	background-color: var(--color-alert-background);
+	border-left-width: 6px;
+	border-left-style: solid;
+  }
+  
+  .alert--top-border {
+	border-top-width: 6px;
+	border-left: none;
+	border-top-style: solid;
+  }
+  
+  .alert--success {
+	border-color: var(--color-success);
+  }
+  
+  .alert--error {
+	border-color: var(--color-error);
+  }
+  
+  .alert--info {
+	border-color: var(--color-info);
+  }
