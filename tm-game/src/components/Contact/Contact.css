@@ -40,3 +40,28 @@
 	font-size: 16px;
 }
 
+a:hover {
+	text-decoration: none;
+	color: #00587A;
+	border: none;
+}
+
+.link-stack {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.update {
+	color: green;
+}
+
+.cancel {
+	color: red;
+	padding-left: 4px;
+}
+
+button:disabled {
+	opacity: 0.5;
+}

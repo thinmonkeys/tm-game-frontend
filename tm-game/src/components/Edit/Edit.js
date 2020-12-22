@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Alert from '../Alert/Alert'
+import Loading from '../Loading/Loading'
 import moment from 'moment'
 import './Edit.css'
 
@@ -13,10 +14,6 @@ export default class Edit extends Component {
 		isConfirm: false, 
 		isUpdateSuccess:false, 
 		hasUpdateError: false
-	}
-
-	handlePut(){
-
 	}
 
 	handleAmountChange = (e) => {
@@ -38,7 +35,16 @@ export default class Edit extends Component {
 		const {RecipientName, RecipientID, ID} = this.state.ddRecord[0]
 		const {amount, frequency, nextDueDate} = this.state
 		const formattedDate = moment(nextDueDate).format()
-		console.log(amount, frequency, formattedDate)
+
+		if (amount > 100000) {
+			return alert("amount error")
+		}
+
+		if (formattedDate <= moment().format()) {
+			return alert("date error")
+		}
+
+		this.setState({isLoading: true})
 		const requestOptions = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
@@ -66,8 +72,9 @@ export default class Edit extends Component {
 	}
 
 	render(){
-		const {onEdit} = this.props
-		const {amount, frequency, nextDueDate, isUpdateSuccess, hasUpdateError} = this.state
+		const {amount, frequency, nextDueDate, isUpdateSuccess, hasUpdateError, isLoading} = this.state
+
+		if(isLoading) return <Loading/>
 
 		if(hasUpdateError) return <Alert children="There was an error updating your direct debit" variant="error"/>
 

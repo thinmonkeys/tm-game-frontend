@@ -31,8 +31,11 @@ export default class DirectDebit extends Component {
 			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22", requestOptions)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data)
-		 	this.setState({ nextPointsEligible: data.NextPointsEligible, pointsGained: data.PointsGained, isLoading: false, hasUpdated: true });
+				if(data.status === 200){
+					this.setState({ nextPointsEligible: data.NextPointsEligible, pointsGained: data.PointsGained, isLoading: false, hasUpdated: true });
+				} else {
+					this.setState({ isLoading: false, hasLoadError: true });
+				}
 		});
 		}
 		catch{
@@ -43,7 +46,6 @@ export default class DirectDebit extends Component {
 	handleEdit = (recordId) => {
 		if (!this.state.isEditing) {
 			const recordToEdit = this.state.DirectDebitList.filter((r) => r.ID == recordId)
-			console.log(recordToEdit)
 			this.setState({isEditing: true, directDebitId: recordId, recordtoUpdate: recordToEdit})
 		} else {
 			this.setState({isEditing: false, directDebitId: null})
@@ -55,7 +57,11 @@ export default class DirectDebit extends Component {
 		fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22")
 		.then(response => response.json())
 		.then(data => {
-		 	this.setState({ DirectDebitList: data.DirectDebitList, lastConfirmed: data.LastConfirmed,  isLoading: false });
+			if(data.status === 200){
+				this.setState({ DirectDebitList: data.DirectDebitList, lastConfirmed: data.LastConfirmed,  isLoading: false });
+			} else {
+				this.setState({ isLoading: false, hasError: true });
+			}
 		});
 		}
 		catch{
