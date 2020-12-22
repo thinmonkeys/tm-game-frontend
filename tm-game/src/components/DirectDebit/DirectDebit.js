@@ -15,7 +15,9 @@ export default class DirectDebit extends Component {
 		pointsGained: 0,
 		isLoading: true,
 		hasError: false,
-		isEditing: false
+		isEditing: false, 
+		directDebitId: null, 
+		recordtoUpdate: []
 	}
 
 	handleConfirmAll() {
@@ -38,8 +40,14 @@ export default class DirectDebit extends Component {
 		}
 	}
 
-	handleEdit(){
-		this.setState({isEditing: !this.state.isEditing})
+	handleEdit = (recordId) => {
+		if (!this.state.isEditing) {
+			const recordToEdit = this.state.DirectDebitList.filter((r) => r.ID == recordId)
+			console.log(recordToEdit)
+			this.setState({isEditing: true, directDebitId: recordId, recordtoUpdate: recordToEdit})
+		} else {
+			this.setState({isEditing: false, directDebitId: null})
+		}
 	}
 
 	componentDidMount(){
@@ -56,7 +64,7 @@ export default class DirectDebit extends Component {
 	}
 
 	render(){
-		const {DirectDebitList, isLoading, hasError, hasUpdated, pointsGained, isEditing} = this.state
+		const {DirectDebitList, isLoading, hasError, hasUpdated, pointsGained, isEditing, recordtoUpdate} = this.state
 
 		if (isLoading) return <Loading/>
 
@@ -71,9 +79,9 @@ export default class DirectDebit extends Component {
 			
 			hasUpdated ? <Alert children={`You have successfully updated your direct debits and earned ${pointsGained} points`} variant='success'/> : 
 
-			isEditing ? <Edit onEdit={() => this.handleEdit()}/> :
+			isEditing ? <Edit record={recordtoUpdate} onEdit={() => this.handleEdit()}/> :
 			
-			DirectDebitList.length > 0 ? <DataSet onConfirmAll={() => this.handleConfirmAll()} onEdit={() => this.handleEdit()} recordList={DirectDebitList}/> : <Alert children="You have no direct debits" />}
+			DirectDebitList.length > 0 ? <DataSet onConfirmAll={() => this.handleConfirmAll()} onEdit={this.handleEdit} recordList={DirectDebitList}/> : <Alert children="You have no direct debits" />}
 				
 		</div>
 		) 

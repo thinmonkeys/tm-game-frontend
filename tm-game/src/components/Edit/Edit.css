@@ -1,0 +1,50 @@
+button {
+	margin-top: 24px;
+	width: 100%;
+}
+
+.record-item{
+	background-color: #fff;
+	border: 0;
+	margin-bottom: 4px;
+    padding: 16px 0px;
+    line-height: 1.5;
+	letter-spacing: -0.5px;
+	font-size: 12px;
+	border-bottom: 1px solid #ebebeb;
+	-webkit-box-shadow: 0 0 6px 0 #d8d8d8;
+	box-shadow: 0 0 6px 0 #d8d8d8;
+}
+
+.icon {
+	height: 40px;
+	width: 40px;
+	background-image: url('../../resources/icon_MonthlyPayments.png');
+	}
+
+.right {
+	padding: 0px 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-around;
+}
+
+.middle {
+	display: flex;
+	flex-direction: column;
+	width: 100%
+}
+
+.left {
+	padding: 0px 16px;
+}
+
+.creditor-name {
+	text-transform: capitalize;
+	font-size: 16px;
+}
+
+.amount {
+	font-size: 16px;
+}

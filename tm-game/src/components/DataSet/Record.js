@@ -16,7 +16,7 @@ const Record = ({record, onEdit}) => (
 			
 		<div className="right">
 			<div className="amount">{formatAmount(record.AmountPence)}</div>
-			<a onClick={onEdit}>edit</a>
+			<a value={record.AmountPence} onClick={() => onEdit(record.ID)}>edit</a>
 		</div>
 	</li>
 )
