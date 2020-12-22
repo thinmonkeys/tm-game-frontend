@@ -14,10 +14,10 @@ export default class Incomes extends Component {
 
 	componentDidMount(){
 		try {
-			fetch("../../service/FakeServices")
-		.then((response) => response.json())
-		.then(Incomes => {
-			this.setState({ IncomeList: Incomes, isLoading: false });
+			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/incomes?cif=4006001200122")
+			.then(response => response.json())
+		.then(data => {
+				this.setState({ IncomeList: data.IncomeList, lastConfirmed: data.LastConfirmed,  isLoading: false });
 		});
 		}
 		catch{
