@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Alert from '../Alert/Alert'
 import Loading from '../Loading/Loading'
 import moment from 'moment'
+import CurrencyInput from 'react-currency-masked-input'
+import {formatAmount} from  '../../utils/utils'
 import './Edit.css'
 
 export default class Edit extends Component {
 	state = {
 		ddRecord: [],
-		amount: null,
+		amount: 0,
 		frequency: null,
 		nextDueDate: null,
 		isLoading: false, 
@@ -17,7 +19,7 @@ export default class Edit extends Component {
 	}
 
 	handleAmountChange = (e) => {
-		const amount = e.target.value.slice(1)
+		const amount = e.target.value
 		this.setState({amount: amount})
 	}
 
@@ -49,7 +51,7 @@ export default class Edit extends Component {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				"ID": ID,"RecipientID":RecipientID,"RecipientName": RecipientName,"DueDate": formattedDate,"Frequency": frequency,"AmountPence": Number(amount)
+				"ID": ID,"RecipientID":RecipientID,"RecipientName": RecipientName,"DueDate": formattedDate,"Frequency": frequency,"AmountPence": Number(amount) * 100
 			 })
 		};
 		console.log(requestOptions.body)
@@ -84,7 +86,7 @@ export default class Edit extends Component {
 			<div>
 				<div className="record-item">
 				<div>Amount</div>
-				<input onChange={this.handleAmountChange} type="currency" value={`£${amount}`}></input>
+				<CurrencyInput onChange={this.handleAmountChange} type="currency" value={amount}/>
 				</div>
 				<div className="record-item">
 				<div>Frequency</div>

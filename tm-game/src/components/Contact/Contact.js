@@ -167,7 +167,7 @@ export default class Contact extends Component {
 				{isEditingMobile ? <input className={hasMobileError ? "invalid-input" : ""}  onChange={this.handleMobileChange} value={mobileNumber}></input> : <div>{mobileNumber}</div>}
 				</div>
 				<div>
-				{isEditingMobile? <div className="link-stack"><a onClick={() => this.handleMobileUpdate()} className="update">update</a><a className="cancel" onClick={() => this.handleMobileEdit()}>cancel</a></div> : <div><a onClick={() => this.handleMobileEdit()}>edit</a></div>}
+				{isEditingMobile? <div className="link-stack"><a onClick={() => this.handleMobileUpdate()} className="update">update</a></div> : <div><a onClick={() => this.handleMobileEdit()}>edit</a></div>}
 				</div>
 			</div>
 			<div className="contact-info">
@@ -176,7 +176,7 @@ export default class Contact extends Component {
 				{isEditingHome ? <input onChange={this.handleHomeChange}value={homeNumber}></input> : <div>{homeNumber}</div>}
 				</div>
 				<div>
-				{isEditingHome? <div className="link-stack"><a onClick={() => this.handleHomeUpdate()} className="update">update</a><a className="cancel" onClick={() => this.handleHomeEdit()}>cancel</a></div> : <div><a onClick={() => this.handleHomeEdit()}>edit</a></div>}
+				{isEditingHome? <div className="link-stack"><a onClick={() => this.handleHomeUpdate()} className="update">update</a></div> : <div><a onClick={() => this.handleHomeEdit()}>edit</a></div>}
 				</div>
 			</div>
 			<div className={`contact-info`}>
@@ -185,10 +185,9 @@ export default class Contact extends Component {
 				{isEditingEmail ? <input className={hasEmailError ? "invalid-input" : ""} onChange={this.handleEmailChange} value={email}></input> : <div>{email}</div>}
 				</div>
 				<div>
-				{isEditingEmail ? <div className="link-stack"><a className="update" onClick={() => this.handleEmailUpdate()}>update</a><a className="cancel" onClick={() => this.handleEmailEdit()}>cancel</a></div> : <div><a onClick={() => this.handleEmailEdit()}>edit</a></div>}
+				{isEditingEmail ? <div className="link-stack"><a className="update" onClick={() => this.handleEmailUpdate()}>update</a></div> : <div><a onClick={() => this.handleEmailEdit()}>edit</a></div>}
 				</div>
 			</div>
-			<button disabled={isEditingEmail || isEditingMobile || isEditingHome} className="confirm-all" /*onClick={() => this.handleConfirmAll()}*/>confirm all</button>
 			</div>}
 		</div>
 		)

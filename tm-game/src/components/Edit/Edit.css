@@ -7,10 +7,10 @@ button {
 	background-color: #fff;
 	border: 0;
 	margin-bottom: 4px;
-    padding: 16px 0px;
+    padding: 16px 16px;
     line-height: 1.5;
 	letter-spacing: -0.5px;
-	font-size: 12px;
+	font-size: 14px;
 	border-bottom: 1px solid #ebebeb;
 	-webkit-box-shadow: 0 0 6px 0 #d8d8d8;
 	box-shadow: 0 0 6px 0 #d8d8d8;
