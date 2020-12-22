@@ -65,3 +65,7 @@ a:hover {
 button:disabled {
 	opacity: 0.5;
 }
+
+.invalid-input {
+	border: 2px solid red;
+}
