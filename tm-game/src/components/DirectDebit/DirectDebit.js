@@ -15,7 +15,9 @@ export default class DirectDebit extends Component {
 		pointsGained: 0,
 		isLoading: true,
 		hasError: false,
-		isEditing: false
+		isEditing: false, 
+		directDebitId: null, 
+		recordtoUpdate: []
 	}
 
 	handleConfirmAll() {
@@ -29,8 +31,11 @@ export default class DirectDebit extends Component {
 			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22", requestOptions)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data)
-		 	this.setState({ nextPointsEligible: data.NextPointsEligible, pointsGained: data.PointsGained, isLoading: false, hasUpdated: true });
+				if(data.status === 200){
+					this.setState({ nextPointsEligible: data.NextPointsEligible, pointsGained: data.PointsGained, isLoading: false, hasUpdated: true });
+				} else {
+					this.setState({ isLoading: false, hasLoadError: true });
+				}
 		});
 		}
 		catch{
@@ -38,8 +43,13 @@ export default class DirectDebit extends Component {
 		}
 	}
 
-	handleEdit(){
-		this.setState({isEditing: !this.state.isEditing})
+	handleEdit = (recordId) => {
+		if (!this.state.isEditing) {
+			const recordToEdit = this.state.DirectDebitList.filter((r) => r.ID == recordId)
+			this.setState({isEditing: true, directDebitId: recordId, recordtoUpdate: recordToEdit})
+		} else {
+			this.setState({isEditing: false, directDebitId: null})
+		}
 	}
 
 	componentDidMount(){
@@ -47,7 +57,11 @@ export default class DirectDebit extends Component {
 		fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22")
 		.then(response => response.json())
 		.then(data => {
-		 	this.setState({ DirectDebitList: data.DirectDebitList, lastConfirmed: data.LastConfirmed,  isLoading: false });
+			if(data.status === 200){
+				this.setState({ DirectDebitList: data.DirectDebitList, lastConfirmed: data.LastConfirmed,  isLoading: false });
+			} else {
+				this.setState({ isLoading: false, hasError: true });
+			}
 		});
 		}
 		catch{
@@ -56,7 +70,7 @@ export default class DirectDebit extends Component {
 	}
 
 	render(){
-		const {DirectDebitList, isLoading, hasError, hasUpdated, pointsGained, isEditing} = this.state
+		const {DirectDebitList, isLoading, hasError, hasUpdated, pointsGained, isEditing, recordtoUpdate} = this.state
 
 		if (isLoading) return <Loading/>
 
@@ -71,9 +85,9 @@ export default class DirectDebit extends Component {
 			
 			hasUpdated ? <Alert children={`You have successfully updated your direct debits and earned ${pointsGained} points`} variant='success'/> : 
 
-			isEditing ? <Edit onEdit={() => this.handleEdit()}/> :
+			isEditing ? <Edit record={recordtoUpdate} onEdit={() => this.handleEdit()}/> :
 			
-			DirectDebitList.length > 0 ? <DataSet onConfirmAll={() => this.handleConfirmAll()} onEdit={() => this.handleEdit()} recordList={DirectDebitList}/> : <Alert children="You have no direct debits" />}
+			DirectDebitList.length > 0 ? <DataSet onConfirmAll={() => this.handleConfirmAll()} onEdit={this.handleEdit} recordList={DirectDebitList}/> : <Alert children="You have no direct debits" />}
 				
 		</div>
 		) 

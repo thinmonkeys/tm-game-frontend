@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar'
 import Loading from '../Loading/Loading'
 import Alert from '../Alert/Alert'
-import Edit from '../Edit/Edit'
 import './Contact.css'
 
 
 export default class Contact extends Component {
 
 	state = {
-		mobileNumber: "07770999887", 
-		homeNumber: "0161 123 1234",
-		email: "test@test.com",
+		contactDetails: {},
 		isLoading: false,
 		hasError: false, 
-		isEditing: false,
+		isEditingEmail: false,
+		isEditingMobile: false,
+		isEditingHome: false,
 		hasUpdated: false,
 		pointsGained: 0
 	}
@@ -24,26 +23,52 @@ export default class Contact extends Component {
 
 	}
 
-	handleEdit(){
-		this.setState({isEditing: !this.state.isEditing})
+	handleEmailEdit(){
+		this.setState({isEmailEditing: !this.state.isEmailEditing})
 	}
 
-	// componentDidMount(){
-	// 	try {
-	// 		fetch("../../service/FakeServices")
-	// 	.then((response) => response.json())
-	// 	.then(contactDetails => {
-	// 		this.setState({ contactDetails: contactDetails, isLoading: false });
-	// 	});
-	// 	}
-	// 	catch{
-	// 		this.setState({ isLoading: false, hasLoadError: true });
-	// 	}
-	// }
+	handleEmailUpdate(){
+		alert("update email")
+	}
+
+	handleEmailChange = (e) => {
+		let contactDetails = this.state.contactDetails
+		contactDetails.EmailAddress = e.target.value
+		this.setState({contactDetails: contactDetails})
+	}
+
+	handleMobileEdit(){
+		this.setState({isEditingMobile: !this.state.isEditingMobile})
+	}
+
+	handleHomeEdit(){
+		this.setState({isEditingHome: !this.state.isEditingHome})
+	}
+
+	componentDidMount(){
+		this.setState({isLoading: true})
+		try {
+			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/contactdetails?cif=4006001200%22")
+		.then((response) => response.json())
+		.then(data => {
+			if (data.status === 200){
+				this.setState({ contactDetails: data.ContactDetails, isLoading: false });
+			} else {
+				this.setState({ isLoading: false, hasError: true });
+			}
+		});
+		}
+		catch{
+			this.setState({ isLoading: false, hasError: true });
+		}
+	}
 
 
 	render(){
-		const {mobileNumber, homeNumber, email, isLoading, hasError, hasUpdated, isEditing, pointsGained} = this.state
+		const {contactDetails, isLoading, hasError, hasUpdated, isEmailEditing, isEditingMobile, isEditingHome, pointsGained} = this.state
+		const mobileNumber = contactDetails.MobilePhoneNumber
+		const homeNumber = contactDetails.HomePhoneNumber
+		const email = contactDetails.EmailAddress
 
 		if (isLoading) return <Loading/>
 
@@ -52,43 +77,41 @@ export default class Contact extends Component {
 			<title>Contact Details</title>
 			<NavBar/>
 
-			<h1>{isEditing ? "Editing Contact Detail" : "Contact Details"}</h1>
+			<h1>{isEmailEditing || isEditingMobile || isEditingHome ? "Editing Contact Detail" : "Contact Details"}</h1>
 
 			{hasError ? <Alert children="Error loading" variant='error'/> :
 
 			hasUpdated ? <Alert children={`You have successfully updated your contact details and earned ${pointsGained} points`} variant='success'/> : 
 
-			isEditing ? <Edit onEdit={() => this.handleEdit()}/> :
-
 			<div>
 			<div className="contact-info">
 				<div>
 				<div className="info-type">Mobile Number</div>
-				<div>{mobileNumber}</div>
+				{isEditingMobile ? <input value={mobileNumber}></input> : <div>{mobileNumber}</div>}
 				</div>
 				<div>
-				<a onClick={() => this.handleEdit()}>edit</a>
+				{isEditingMobile? <div className="link-stack"><a className="update">update</a><a className="cancel" onClick={() => this.handleMobileEdit()}>cancel</a></div> : <div><a onClick={() => this.handleMobileEdit()}>edit</a></div>}
 				</div>
 			</div>
 			<div className="contact-info">
 				<div>
 				<div className="info-type">Home Number </div>
-				<div>{homeNumber}</div>
+				{isEditingHome ? <input value={homeNumber}></input> : <div>{homeNumber}</div>}
 				</div>
 				<div>
-				<a onClick={() => this.handleEdit()}>edit</a>
+				{isEditingHome? <div className="link-stack"><a className="update">update</a><a className="cancel" onClick={() => this.handleHomeEdit()}>cancel</a></div> : <div><a onClick={() => this.handleHomeEdit()}>edit</a></div>}
 				</div>
 			</div>
 			<div className="contact-info">
 				<div>
-				<div className="info-type">Email Number </div>
-				<div>{email}</div>
+				<div className="info-type">Email</div>
+				{isEmailEditing ? <input value={email}></input> : <div>{email}</div>}
 				</div>
 				<div>
-				<a onClick={() => this.handleEdit()}>edit</a>
+				{isEmailEditing? <div className="link-stack"><a className="update" onClick={() => this.handleEmailUpdate()}>update</a><a className="cancel" onClick={() => this.handleEmailEdit()}>cancel</a></div> : <div><a onClick={() => this.handleEmailEdit()}>edit</a></div>}
 				</div>
 			</div>
-			<button className="confirm-all" onClick={() => this.handleConfirmAll()}>confirm all</button>
+			<button disabled={isEmailEditing || isEditingMobile || isEditingHome} className="confirm-all" onClick={() => this.handleConfirmAll()}>confirm all</button>
 			</div>}
 		</div>
 		)
