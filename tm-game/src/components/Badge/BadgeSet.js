@@ -12,6 +12,10 @@ export default class BadgeSet extends Component {
     income: { Level: 0 },
     contact: { Level: 0 },
     isLoading: true,
+    ddInfo: "Check your Direct Debits to earn your first badge",
+    soInfo: "Check your Standing Orders to earn your first badge",
+    incomeInfo: "Check your Incomes to earn your first badge",
+    contactInfo: "Check your Contact Details to earn your first badge",
   };
 
   handleInfoClick(infoKey) {
@@ -25,25 +29,38 @@ export default class BadgeSet extends Component {
           !this.state.dd.hasOwnProperty("Code") ||
           this.state.dd.Level < x.Level
         )
-          this.setState({ dd: x });
+          this.setState({
+            dd: x,
+            ddInfo: "Check your Direct Debits again next month to level up",
+          });
       } else if (x.Code.includes("SO")) {
         if (
           !this.state.so.hasOwnProperty("Code") ||
           this.state.so.Level < x.Level
         )
-          this.setState({ so: x });
+          this.setState({
+            so: x,
+            soInfo: "Check your Standing Orders again next month to level up",
+          });
       } else if (x.Code.includes("IN")) {
         if (
           !this.state.income.hasOwnProperty("Code") ||
           this.state.income.Level < x.Level
         )
-          this.setState({ income: x });
+          this.setState({
+            income: x,
+            incomeInfo: "Check your Incomes again next month to level up",
+          });
       } else if (x.Code.includes("CD")) {
         if (
           !this.state.contact.hasOwnProperty("Code") ||
           this.state.contact.Level < x.Level
         )
-          this.setState({ contact: x });
+          this.setState({
+            contact: x,
+            contactInfo:
+              "Check your ContactDetails again next month to level up",
+          });
       }
     });
   }
@@ -51,13 +68,11 @@ export default class BadgeSet extends Component {
   render() {
     const { showInfo, infoKey } = this.state;
     const info = {
-      dd: {},
-      so: {},
-      income: {},
-      contact: {},
+      dd: this.state.ddInfo,
+      so: this.state.soInfo,
+      income: this.state.incomeInfo,
+      contact: this.state.contactInfo,
     };
-
-    console.log(this.props.badgesArr);
 
     return (
       <div>
@@ -65,25 +80,25 @@ export default class BadgeSet extends Component {
           <Badge
             handleInfoClick={() => this.handleInfoClick("dd")}
             name="Direct Debit"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt"
+            description="For keeping your Direct Debits up to date"
             level={this.state.dd.Level}
           />
           <Badge
-            handleInfoClick={() => this.handleInfoClick("incomes")}
+            handleInfoClick={() => this.handleInfoClick("income")}
             name="Incomes"
-            description="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            description="For keeping your incomes up to date"
             level={this.state.income.Level}
           />
           <Badge
             handleInfoClick={() => this.handleInfoClick("so")}
             name="Standing Orders"
-            description="Excepteur sint occaecat cupidatat non proident."
+            description="For keeping your Standing Orders up to date"
             level={this.state.so.Level}
           />
           <Badge
             handleInfoClick={() => this.handleInfoClick("contact")}
             name="Contact"
-            description="tempor incididunt ut labore et dolore magna aliqua."
+            description="For keeping your Contact Details up to date"
             level={this.state.contact.Level}
           />
         </div>
