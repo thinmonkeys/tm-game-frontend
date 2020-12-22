@@ -1,5 +1,4 @@
 import "./NavBar.css";
-import { NavLink } from "react-router-dom";
 
 const NavBarItem = ({ name, path, isActive }) => {
   if (isActive) {
@@ -8,7 +7,7 @@ const NavBarItem = ({ name, path, isActive }) => {
         <u>{name}</u>
       </b>
     );
-  } else return <NavLink to={path}>{name}</NavLink>;
+  } else return <a href={path}>{name}</a>;
 };
 
 export default NavBarItem;

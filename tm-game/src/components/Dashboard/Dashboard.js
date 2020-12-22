@@ -1,17 +1,15 @@
-import NavBar from '../NavBar/NavBar'
-import Scoreboard from '../Scoreboard/Scoreboard'
-import BadgeSet from '../Badge/BadgeSet'
-import './Dashboard.css'
+import NavBar from "../NavBar/NavBar";
+import Scoreboard from "../Scoreboard/Scoreboard";
+import "./Dashboard.css";
 
 const Dashboard = () => {
-return (
-<div>
-	<NavBar/>
-	<h1>Thin Monkeys</h1>
-	<Scoreboard/>
-	<BadgeSet />
-</div>
-)
-}
+  return (
+    <div>
+      <NavBar />
+      <h1>Thin Monkeys</h1>
+      <Scoreboard />
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
