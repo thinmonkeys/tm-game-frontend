@@ -26,12 +26,13 @@ export default class BadgeSet extends Component {
 	
 	return(
 	<div>
-		<div className="badge-set">
-			<Badge handleInfoClick={() => this.handleInfoClick("dd")} name="Direct Debit"/>
-			<Badge  handleInfoClick={() => this.handleInfoClick("incomes")} name="Incomes"/>
-			<Badge  handleInfoClick={() => this.handleInfoClick("so")} name="Standing Orders"/>
-			<Badge  handleInfoClick={() => this.handleInfoClick("contact")} name="Contact"/>
+		<div className="badge-set-column">
+			<Badge handleInfoClick={() => this.handleInfoClick("dd")} name="Direct Debit" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt"/>
+			<Badge  handleInfoClick={() => this.handleInfoClick("incomes")} name="Incomes" description="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
+			<Badge  handleInfoClick={() => this.handleInfoClick("so")} name="Standing Orders" description="Excepteur sint occaecat cupidatat non proident."/>
+			<Badge  handleInfoClick={() => this.handleInfoClick("contact")} name="Contact" description="tempor incididunt ut labore et dolore magna aliqua."/>
 		</div>
+	
 
 		{showInfo ? <Alert children={info[key]}/> : <div></div>}
 	</div>

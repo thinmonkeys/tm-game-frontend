@@ -4,16 +4,14 @@ import silver_medal from '../../resources/silver_medal.png'
 import gold_medal from '../../resources/gold_medal.png'
 
 
-const Badge = ({handleInfoClick, name}) => (
-<a onClick={handleInfoClick}>
-<div>
+const Badge = ({handleInfoClick, name, description}) => (
 	<div className="badge">
-		<h4>{name}</h4>
-		<img alt="medal" src={bronze_medal}/>
+	<img className="no-level" alt="medal" src={bronze_medal}/>
+		<div className="type">
+		<div className="badge-title">{name}</div>
+		<div>{description}</div>
+		</div>
 	</div>
-</div>
-</a>
-
 )
 
 export default Badge	

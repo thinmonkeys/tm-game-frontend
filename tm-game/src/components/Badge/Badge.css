@@ -1,14 +1,31 @@
-.badge-set {
+.badge-set-column {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
-	justify-content: space-evenly;
 	margin: 24px 0px;
 }
 
 .badge {
+	width: 100%;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
-	justify-content: center;
+	border: 0;
+	padding: 16px 16px;
+	margin-bottom: 4px;
+    line-height: 1.5;
+	letter-spacing: -0.5px;
+	font-size: 12px;
+	border-bottom: 1px solid #ebebeb;
+	-webkit-box-shadow: 0 0 6px 0 #d8d8d8;
+	box-shadow: 0 0 6px 0 #d8d8d8;
   }
+
+  .badge-title {
+	text-transform: capitalize;
+	font-size: 16px; 
+  }
+
+.no-level{
+	opacity: 0.25;
+}
