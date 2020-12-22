@@ -6,8 +6,8 @@ import './Dashboard.css'
 const Dashboard = () => {
 return (
 <div>
-	<h1>Thin Monkeys</h1>
 	<NavBar/>
+	<h1>Thin Monkeys</h1>
 	<Scoreboard/>
 	<BadgeSet />
 </div>
