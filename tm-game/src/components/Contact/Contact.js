@@ -135,6 +135,7 @@ export default class Contact extends Component {
 			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/contactdetails?cif=4006001200%22")
 		.then((response) => response.json())
 		.then(data => {
+				data.ContactDetails.MobilePhoneNumber = 0 + data.ContactDetails.MobilePhoneNumber
 				this.setState({ contactDetails: data.ContactDetails, isLoading: false });
 		});
 		}
