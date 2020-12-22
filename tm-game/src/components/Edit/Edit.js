@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Alert from '../Alert/Alert'
 import Loading from '../Loading/Loading'
 import moment from 'moment'
-import CurrencyInput from 'react-currency-masked-input'
 import {formatAmount} from  '../../utils/utils'
 import './Edit.css'
 
@@ -15,7 +14,9 @@ export default class Edit extends Component {
 		isLoading: false, 
 		isConfirm: false, 
 		isUpdateSuccess:false, 
-		hasUpdateError: false
+		hasUpdateError: false, 
+		hasDateError: false, 
+		hasAmountError: false
 	}
 
 	handleAmountChange = (e) => {
@@ -39,14 +40,15 @@ export default class Edit extends Component {
 		const formattedDate = moment(nextDueDate).format()
 
 		if (amount > 100000) {
-			return alert("amount error")
+			this.setState({hasAmountError: false})
 		}
 
 		if (formattedDate <= moment().format()) {
-			return alert("date error")
+			this.setState({hasDateError: true})
+			return 
 		}
 
-		this.setState({isLoading: true})
+		this.setState({isLoading: true, hasDateError: false, hasAmountError: false})
 		const requestOptions = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
@@ -74,7 +76,7 @@ export default class Edit extends Component {
 	}
 
 	render(){
-		const {amount, frequency, nextDueDate, isUpdateSuccess, hasUpdateError, isLoading} = this.state
+		const {amount, frequency, nextDueDate, isUpdateSuccess, hasUpdateError, isLoading, hasDateError} = this.state
 
 		if(isLoading) return <Loading/>
 
@@ -86,7 +88,7 @@ export default class Edit extends Component {
 			<div>
 				<div className="record-item">
 				<div>Amount</div>
-				<CurrencyInput onChange={this.handleAmountChange} type="currency" value={amount}/>
+				<input onChange={this.handleAmountChange} type="currency" value={amount}></input>
 				</div>
 				<div className="record-item">
 				<div>Frequency</div>
@@ -101,7 +103,7 @@ export default class Edit extends Component {
 				</div>
 				<div className="record-item">
 				<div>Due date</div>
-				<input type="date" onChange={this.handleDueDateChange} value={moment(nextDueDate).format("yyyy-MM-DD")}></input>
+				<input className={hasDateError ? " invalid-input" : ""} onChange={this.handleDueDateChange} value={moment(nextDueDate).format("yyyy-MM-DD")}></input>
 				</div>
 				<button onClick={() => this.handleConfirm()}>confirm</button>
 			</div>
