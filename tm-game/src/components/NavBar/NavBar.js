@@ -1,14 +1,49 @@
-import { NavLink } from "react-router-dom";
-import './NavBar.css';
+import "./NavBar.css";
+import React, { Component } from "react";
+import NavBarItem from "./NavBarItem.js";
 
-const NavBar = () => <div>
-	<ul>
-  <li><a href="/">Home</a></li>
-  <li><a href="../DirectDebit/DirectDebit">Direct Debits</a></li>
-  <li><a href="../Incomes/Incomes">Incomes</a></li>
-  <li><a href="../StandingOrders/StandingOrders">Standing Orders</a></li>
-  <li><a href="../Contact/Contact">Contact</a></li>
-	</ul>
-</div>
+const NavBar = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <NavBarItem
+            name="Home"
+            path="/"
+            isActive={window.location.pathname === "/"}
+          />
+        </li>
+        <li>
+          <NavBarItem
+            name="Direct Debits"
+            path="../DirectDebit/DirectDebit"
+            isActive={window.location.pathname === "/DirectDebit/DirectDebit"}
+          />
+        </li>
+        <li>
+          <NavBarItem
+            name="Incomes"
+            path="../Incomes/Incomes"
+            isActive={window.location.pathname === "/Incomes/Incomes"}
+          />
+        </li>
+        <li>
+          <NavBarItem
+            name="Standing Orders"
+            path="../StandingOrders"
+            isActive={window.location.pathname === "/StandingOrders"}
+          />
+        </li>
+        <li>
+          <NavBarItem
+            name="Contact"
+            path="../Contact/Contact"
+            isActive={window.location.pathname === "/Contact/Contact"}
+          />
+        </li>
+      </ul>
+    </div>
+  );
+};
 
-export default NavBar
+export default NavBar;
