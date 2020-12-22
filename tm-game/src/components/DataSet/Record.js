@@ -9,9 +9,9 @@ const Record = ({record, onEdit}) => (
 		</div>
 			
 		<div className="middle">
-			<div className="creditor-name">{record.CreditorName}</div>
-			<div className="date">{moment(record.NextDueDate).format("dddd · MMMM Do")}</div>
-			<div className="description">{record.FrequencyDescription}</div>
+			<div className="creditor-name">{record.RecipientName}</div>
+			<div className="date">{moment(record.DueDate).format("dddd · MMMM Do")}</div>
+			<div className="description">{record.Frequency}</div>
 		</div>
 			
 		<div className="right">

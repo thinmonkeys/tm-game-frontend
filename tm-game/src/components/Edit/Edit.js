@@ -37,11 +37,13 @@ export default class Edit extends Component {
 	handleConfirm = (e) => {
 		const {RecipientName, RecipientID, ID} = this.state.ddRecord[0]
 		const {amount, frequency, nextDueDate} = this.state
+		const formattedDate = moment(nextDueDate).format()
+		console.log(amount, frequency, formattedDate)
 		const requestOptions = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				"ID": ID,"RecipientID":RecipientID,"RecipientName": RecipientName,"DueDate": nextDueDate,"Frequency": frequency,"AmountPence": Number(amount)
+				"ID": ID,"RecipientID":RecipientID,"RecipientName": RecipientName,"DueDate": formattedDate,"Frequency": frequency,"AmountPence": Number(amount)
 			 })
 		};
 		console.log(requestOptions.body)
@@ -60,7 +62,7 @@ export default class Edit extends Component {
 	componentDidMount(){
 		const {record} = this.props
 		console.log(record)
-		this.setState({ddRecord: record, amount: record[0].AmountPence, frequency: record[0].Frequency, nextDueDate: record[0].DueDate.toLocaleString()})
+		this.setState({ddRecord: record, amount: record[0].AmountPence, frequency: record[0].Frequency, nextDueDate: record[0].DueDate})
 	}
 
 	render(){
