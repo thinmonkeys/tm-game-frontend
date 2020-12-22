@@ -103,7 +103,7 @@ export default class Edit extends Component {
 				</div>
 				<div className="record-item">
 				<div>Due date</div>
-				<input className={hasDateError ? " invalid-input" : ""} onChange={this.handleDueDateChange} value={moment(nextDueDate).format("yyyy-MM-DD")}></input>
+				<input  type="date" className={hasDateError ? " invalid-input" : ""} onChange={this.handleDueDateChange} value={moment(nextDueDate).format("yyyy-MM-DD")}></input>
 				</div>
 				<button onClick={() => this.handleConfirm()}>confirm</button>
 			</div>
