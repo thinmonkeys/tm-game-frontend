@@ -31,11 +31,7 @@ export default class DirectDebit extends Component {
 			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22", requestOptions)
 			.then(response => response.json())
 			.then(data => {
-				if(data.status === 200){
 					this.setState({ nextPointsEligible: data.NextPointsEligible, pointsGained: data.PointsGained, isLoading: false, hasUpdated: true });
-				} else {
-					this.setState({ isLoading: false, hasLoadError: true });
-				}
 		});
 		}
 		catch{
@@ -57,11 +53,7 @@ export default class DirectDebit extends Component {
 		fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22")
 		.then(response => response.json())
 		.then(data => {
-			if(data.status === 200){
 				this.setState({ DirectDebitList: data.DirectDebitList, lastConfirmed: data.LastConfirmed,  isLoading: false });
-			} else {
-				this.setState({ isLoading: false, hasError: true });
-			}
 		});
 		}
 		catch{
