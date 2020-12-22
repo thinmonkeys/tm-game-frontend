@@ -28,7 +28,7 @@ export default class DirectDebit extends Component {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ })
 			};
-			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22", requestOptions)
+			fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001186", requestOptions)
 			.then(response => response.json())
 			.then(data => {
 					this.setState({ nextPointsEligible: data.NextPointsEligible, pointsGained: data.PointsGained, isLoading: false, hasUpdated: true });
@@ -50,7 +50,7 @@ export default class DirectDebit extends Component {
 
 	componentDidMount(){
 		try {
-		fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001200%22")
+		fetch("https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/directdebits?cif=4006001186")
 		.then(response => response.json())
 		.then(data => {
 				this.setState({ DirectDebitList: data.DirectDebitList, lastConfirmed: data.LastConfirmed,  isLoading: false });
