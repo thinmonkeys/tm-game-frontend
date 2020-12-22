@@ -1,7 +1,7 @@
-const Edit = ({onEdit}) => (
+const Edit = ({onEdit, record}) => (
 	<div>
 		<div>
-		Editing
+		Editing <span>{record.amount}</span>
 		</div>
 		<button onClick={onEdit}>confirm</button>
 	</div>
