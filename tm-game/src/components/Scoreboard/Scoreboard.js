@@ -10,6 +10,9 @@ export default class Scoreboard extends Component {
     isLoading: true,
     hasError: false,
     badgesArr: [],
+    leaderboardPos: 1,
+    DirectDebitList: [],
+    score: 0,
   };
 
   componentDidMount() {
@@ -19,12 +22,13 @@ export default class Scoreboard extends Component {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           this.setState({
             DirectDebitList: data.DirectDebitList,
             lastConfirmed: data.LastConfirmed,
             isLoading: false,
             badgesArr: data.Badges,
+            leaderboardPos: data.Position,
+            score: data.Score,
           });
         });
     } catch {
@@ -41,7 +45,10 @@ export default class Scoreboard extends Component {
 
     return (
       <div>
-        <div className="scoreboard">Scoreboard</div>
+        <div className="scoreboard">
+          <h2>You're in postion {this.state.leaderboardPos} !</h2>
+          <h3>With a score of {this.state.score}</h3>
+        </div>
         <BadgeSet badgesArr={this.state.badgesArr} />
       </div>
     );
