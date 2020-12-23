@@ -46,7 +46,7 @@ export default class Scoreboard extends Component {
     return (
       <div>
         <div className="scoreboard">
-          <h2>You're in postion {this.state.leaderboardPos} !</h2>
+          <h2>You're in position {this.state.leaderboardPos} !</h2>
           <h3>With a score of {this.state.score}</h3>
         </div>
         <BadgeSet badgesArr={this.state.badgesArr} />
