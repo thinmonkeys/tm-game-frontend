@@ -75,7 +75,7 @@ export default class DirectDebit extends Component {
 
 			{hasError ? <Alert children="Error loading" variant='error'/> : 
 			
-			hasUpdated ? <Alert children={`You have successfully updated your direct debits and earned ${pointsGained} points`} variant='success'/> : 
+			hasUpdated ? <Alert children={`Thanks for confirming your direct debits as it ensures we always hold enough back to pay your bills.`} variant='success'/> : 
 
 			isEditing ? <Edit record={recordtoUpdate} onEdit={() => this.handleEdit()}/> :
 			

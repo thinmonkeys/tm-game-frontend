@@ -84,7 +84,7 @@ export default class Edit extends Component {
 
 		return (
 			<div>
-			{isUpdateSuccess ? <Alert children="you have updated your dd"/> : 
+			{isUpdateSuccess ? <Alert children="Thanks for updating your direct debit as it allows us to budget for your bills so you can spend as you wish on your card."/> : 
 			<div>
 				<div className="record-item">
 				<div>Amount</div>
