@@ -18,7 +18,7 @@ export default class Scoreboard extends Component {
   componentDidMount() {
     try {
       fetch(
-        "https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/score?cif=4006001200"
+        "https://q15q6mejoj.execute-api.eu-west-1.amazonaws.com/dev/score?cif=4006001186"
       )
         .then((response) => response.json())
         .then((data) => {
